@@ -83,7 +83,7 @@ namespace stair_char_practice
                         //取54個字元
                         List<char> ans = new List<char>();
                         for (int i = 0; i < 54; i++)
-                        {
+                        {   //搜尋方式增加if判斷式，判定第一個項目是否為!，節省運算步驟
                             if (((x + i) >= content[y].Count) && ((y + i) >= content.Count))
                             {
                                 ans.Add(content[y + i - content.Count][2 * content[y].Count - (x + i) - 2]);
