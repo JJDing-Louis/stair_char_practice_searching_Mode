@@ -22,7 +22,7 @@ namespace stair_char_practice
 
         private void btn_readfile_Click(object sender, EventArgs e)
         {
-            readfile(@"D:\Personal-Work-Space\C# Project\stair_char_practice - 複製\ques.txt");
+            readfile(@"D:\Personal-Work-Space\C# Project\stair_char_practice_searching_Mode\ques.txt");
         }
 
         //readfile(@"");
@@ -30,20 +30,35 @@ namespace stair_char_practice
 
         public StringBuilder judge_function(List<char> ans)
         {
+            List<char> rule = new List<char>() {'%','^','+','@','#','*','='};
             StringBuilder sentence = new StringBuilder();
-            //判定第1個條件，第1個字以及第10字為 !
+            ////判定第1個條件，第1個字以及第10字為 !
+            //if (ans[0].Equals('!') && ans[9].Equals('!'))
+            //{
+            //    //判定第2個條件，符號不會出現在答案裡面(%,^,+,@,#,*,=)
+            //    //if(ans.All(item => item.Equals(rule.Select(item=> item))))
+            //    if (!(ans.Contains('%') || ans.Contains('^') || ans.Contains('+') || ans.Contains('@') || ans.Contains('#') || ans.Contains('*') || ans.Contains('=')))
+            //    {
+            //        foreach (char item in ans)
+            //        {
+            //            sentence.Append(item);
+            //        }
+            //        return sentence.Append(Environment.NewLine);
+            //    }
+            //}
+            //return null;
+            //不知為何中間為少字
             if (ans[0].Equals('!') && ans[9].Equals('!'))
             {
-                //判定第2個條件，符號不會出現在答案裡面(%,^,+,@,#,*,=)
-                //if(ans.All(item => item.Equals(rule.Select(item=> item))))
-                if (!(ans.Contains('%') || ans.Contains('^') || ans.Contains('+') || ans.Contains('@') || ans.Contains('#') || ans.Contains('*') || ans.Contains('=')))
+                foreach (char item in ans)
                 {
-                    foreach (char item in ans)
+                    if (rule.All(element => element != item))
                     {
                         sentence.Append(item);
                     }
-                    return sentence.Append(Environment.NewLine);
                 }
+                return sentence.Append(Environment.NewLine);
+
             }
             return null;
         }
@@ -70,7 +85,7 @@ namespace stair_char_practice
                 }
             }
 
-            string write_path = @"D:\Personal-Work-Space\C# Project\stair_char_practice - 複製\ans\ans.txt";
+            string write_path = @"D:\Personal-Work-Space\C# Project\stair_char_practice_searching_Mode\ans\ans.txt";
             using (StreamWriter streamWriter = new StreamWriter(write_path, false, Encoding.UTF8))
             {
                 //方向左上往右下
@@ -106,98 +121,98 @@ namespace stair_char_practice
                     }
                 }
 
-                //方向右上往左下
-                for (int y = 0; y < content.Count; y++)
-                {
-                    //X方向的平移
-                    for (int x = (content[y].Count - 1); x > 0; x--)
-                    {
-                        //取54個字元
-                        List<char> ans = new List<char>();
-                        for (int i = 0; i < 54; i++)
-                        {
-                            if (((x - i) <= 0) && ((y + i) >= content.Count))
-                            {
-                                ans.Add(content[y + i - content.Count][i - x]);
-                            }
-                            else if (((x - i) <= 0) && ((y + i) < content.Count))
-                            {
-                                ans.Add(content[y + i][i - x]);
-                            }
-                            else if (((x - i) > 0) && ((y + i) >= content.Count))
-                            {
-                                ans.Add(content[y + i - content.Count][x - i]);
-                            }
-                            else
-                            {
-                                ans.Add(content[y + i][x - i]);
-                            }
-                        }
-                        streamWriter.Write(judge_function(ans));
-                    }
-                }
+                ////方向右上往左下
+                //for (int y = 0; y < content.Count; y++)
+                //{
+                //    //X方向的平移
+                //    for (int x = (content[y].Count - 1); x > 0; x--)
+                //    {
+                //        //取54個字元
+                //        List<char> ans = new List<char>();
+                //        for (int i = 0; i < 54; i++)
+                //        {
+                //            if (((x - i) <= 0) && ((y + i) >= content.Count))
+                //            {
+                //                ans.Add(content[y + i - content.Count][i - x]);
+                //            }
+                //            else if (((x - i) <= 0) && ((y + i) < content.Count))
+                //            {
+                //                ans.Add(content[y + i][i - x]);
+                //            }
+                //            else if (((x - i) > 0) && ((y + i) >= content.Count))
+                //            {
+                //                ans.Add(content[y + i - content.Count][x - i]);
+                //            }
+                //            else
+                //            {
+                //                ans.Add(content[y + i][x - i]);
+                //            }
+                //        }
+                //        streamWriter.Write(judge_function(ans));
+                //    }
+                //}
 
-                //方向左下至右上
-                for (int y = (content.Count - 1); y > 0; y--)
-                {
-                    //X方向的平移
-                    for (int x = 0; x < content[y].Count; x++)
-                    {
-                        //取54個字元
-                        List<char> ans = new List<char>();
-                        for (int i = 0; i < 54; i++)
-                        {
-                            if (((x + i) >= content[y].Count) && ((y - i) <= 0))
-                            {
-                                ans.Add(content[y - i + (content.Count - 1)][2 * content[y].Count - (x + i) - 2]);
-                            }
-                            else if (((x + i) >= content[y].Count) && ((y - i) > 0))
-                            {
-                                ans.Add(content[y - i][2 * content[y].Count - (x + i) - 2]);
-                            }
-                            else if (((x + i) < content[y].Count) && ((y - i) <= 0))
-                            {
-                                ans.Add(content[y - i + (content.Count - 1)][x + i]);
-                            }
-                            else
-                            {
-                                ans.Add(content[y - i][x + i]);
-                            }
-                        }
+                ////方向左下至右上
+                //for (int y = (content.Count - 1); y > 0; y--)
+                //{
+                //    //X方向的平移
+                //    for (int x = 0; x < content[y].Count; x++)
+                //    {
+                //        //取54個字元
+                //        List<char> ans = new List<char>();
+                //        for (int i = 0; i < 54; i++)
+                //        {
+                //            if (((x + i) >= content[y].Count) && ((y - i) <= 0))
+                //            {
+                //                ans.Add(content[y - i + (content.Count - 1)][2 * content[y].Count - (x + i) - 2]);
+                //            }
+                //            else if (((x + i) >= content[y].Count) && ((y - i) > 0))
+                //            {
+                //                ans.Add(content[y - i][2 * content[y].Count - (x + i) - 2]);
+                //            }
+                //            else if (((x + i) < content[y].Count) && ((y - i) <= 0))
+                //            {
+                //                ans.Add(content[y - i + (content.Count - 1)][x + i]);
+                //            }
+                //            else
+                //            {
+                //                ans.Add(content[y - i][x + i]);
+                //            }
+                //        }
 
-                        streamWriter.Write(judge_function(ans));
-                    }
-                }
-                //方向右下至左上
-                for (int y = (content.Count - 1); y > 0; y--)
-                {
-                    //X方向的平移
-                    for (int x = 71; x > 0; x--)
-                    {
-                        //取54個字元
-                        List<char> ans = new List<char>();
-                        for (int i = 0; i < 54; i++)
-                        {
-                            if (((x - i) <= 0) && ((y - i) <= 0))
-                            {
-                                ans.Add(content[y - i + (content.Count - 1)][i - x]);
-                            }
-                            else if (((x - i) <= 0) && ((y - i) > 0))
-                            {
-                                ans.Add(content[y - i][i - x]);
-                            }
-                            else if (((x - i) > 0) && ((y - i) <= 0))
-                            {
-                                ans.Add(content[y - i + (content.Count - 1)][x - i]);
-                            }
-                            else
-                            {
-                                ans.Add(content[y - i][x - i]);
-                            }
-                        }
-                        streamWriter.Write(judge_function(ans));
-                    }
-                }
+                //        streamWriter.Write(judge_function(ans));
+                //    }
+                //}
+                ////方向右下至左上
+                //for (int y = (content.Count - 1); y > 0; y--)
+                //{
+                //    //X方向的平移
+                //    for (int x = 71; x > 0; x--)
+                //    {
+                //        //取54個字元
+                //        List<char> ans = new List<char>();
+                //        for (int i = 0; i < 54; i++)
+                //        {
+                //            if (((x - i) <= 0) && ((y - i) <= 0))
+                //            {
+                //                ans.Add(content[y - i + (content.Count - 1)][i - x]);
+                //            }
+                //            else if (((x - i) <= 0) && ((y - i) > 0))
+                //            {
+                //                ans.Add(content[y - i][i - x]);
+                //            }
+                //            else if (((x - i) > 0) && ((y - i) <= 0))
+                //            {
+                //                ans.Add(content[y - i + (content.Count - 1)][x - i]);
+                //            }
+                //            else
+                //            {
+                //                ans.Add(content[y - i][x - i]);
+                //            }
+                //        }
+                //        streamWriter.Write(judge_function(ans));
+                //    }
+                //}
             }
             stopwatch.Stop();
             MessageBox.Show($"{stopwatch.ElapsedMilliseconds}");

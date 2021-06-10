@@ -18,3 +18,13 @@ D:\Personal-Work-Space\C# Project\stair_char_practice - 複製\bin\Debug\stair_c
 D:\Personal-Work-Space\C# Project\stair_char_practice - 複製\bin\Debug\stair_char_practice.exe
 D:\Personal-Work-Space\C# Project\stair_char_practice - 複製\bin\Debug\stair_char_practice.pdb
 D:\Personal-Work-Space\C# Project\stair_char_practice - 複製\obj\Debug\stair_char_practice.csproj.AssemblyReference.cache
+D:\Personal-Work-Space\C# Project\stair_char_practice_searching_Mode\bin\Debug\stair_char_practice.exe.config
+D:\Personal-Work-Space\C# Project\stair_char_practice_searching_Mode\bin\Debug\stair_char_practice.exe
+D:\Personal-Work-Space\C# Project\stair_char_practice_searching_Mode\bin\Debug\stair_char_practice.pdb
+D:\Personal-Work-Space\C# Project\stair_char_practice_searching_Mode\obj\Debug\stair_char_practice.csproj.AssemblyReference.cache
+D:\Personal-Work-Space\C# Project\stair_char_practice_searching_Mode\obj\Debug\stair_char_practice.Form1.resources
+D:\Personal-Work-Space\C# Project\stair_char_practice_searching_Mode\obj\Debug\stair_char_practice.Properties.Resources.resources
+D:\Personal-Work-Space\C# Project\stair_char_practice_searching_Mode\obj\Debug\stair_char_practice.csproj.GenerateResource.cache
+D:\Personal-Work-Space\C# Project\stair_char_practice_searching_Mode\obj\Debug\stair_char_practice.csproj.CoreCompileInputs.cache
+D:\Personal-Work-Space\C# Project\stair_char_practice_searching_Mode\obj\Debug\stair_char_practice.exe
+D:\Personal-Work-Space\C# Project\stair_char_practice_searching_Mode\obj\Debug\stair_char_practice.pdb
