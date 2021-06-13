@@ -30,9 +30,20 @@ namespace stair_char_practice
 
         public StringBuilder judge_function(List<char> ans)
         {
-            List<char> rule = new List<char>() {'%','^','+','@','#','*','='};
+            //List<char> rule = new List<char>() { '%', '^', '+', '@', '#', '*', '=' };
             StringBuilder sentence = new StringBuilder();
+            if (!(ans.Contains('%') || ans.Contains('^') || ans.Contains('+') || ans.Contains('@') || ans.Contains('#') || ans.Contains('*') || ans.Contains('=')))
+            {
+                foreach (char item in ans)
+                {
+                    sentence.Append(item);
+                }
+            }
+            return sentence.Append(Environment.NewLine);
+
+            string[] a = new string[6];
             ////判定第1個條件，第1個字以及第10字為 !
+            //StringBuilder sentence = new StringBuilder();
             //if (ans[0].Equals('!') && ans[9].Equals('!'))
             //{
             //    //判定第2個條件，符號不會出現在答案裡面(%,^,+,@,#,*,=)
@@ -47,20 +58,22 @@ namespace stair_char_practice
             //    }
             //}
             //return null;
-            //不知為何中間為少字
-            if (ans[0].Equals('!') && ans[9].Equals('!'))
-            {
-                foreach (char item in ans)
-                {
-                    if (rule.All(element => element != item))
-                    {
-                        sentence.Append(item);
-                    }
-                }
-                return sentence.Append(Environment.NewLine);
 
-            }
-            return null;
+
+            ////不知為何中間為少字(因為*判定問題)
+            //if (ans[0].Equals('!') && ans[9].Equals('!'))
+            //{
+            //    foreach (char item in ans)
+            //    {
+            //        if (rule.All(element => element != item))
+            //        {
+            //            sentence.Append(item);
+            //        }
+            //    }
+            //    return sentence.Append(Environment.NewLine);
+
+            //}
+            //return null;
         }
 
         /// <summary>
@@ -98,7 +111,7 @@ namespace stair_char_practice
                         //取54個字元
                         List<char> ans = new List<char>();
                         for (int i = 0; i < 54; i++)
-                        {   //搜尋方式增加if判斷式，判定第一個項目是否為!，節省運算步驟
+                        {   //搜尋方式增加if判斷式，判定第一個項目是否為!，節省運算步驟 
                             if (((x + i) >= content[y].Count) && ((y + i) >= content.Count))
                             {
                                 ans.Add(content[y + i - content.Count][2 * content[y].Count - (x + i) - 2]);
@@ -115,6 +128,23 @@ namespace stair_char_practice
                             {
                                 ans.Add(content[y + i][x + i]);
                             }
+                            ///條件不符合直接不計算
+                            if (ans.Count == 1)
+                            {
+                                if (!ans[0].Equals('!'))
+                                {
+                                   // ans.Clear();
+                                    break;
+                                }
+                            }
+                            //if (ans.Count == 10)
+                            //{
+                            //    if (!ans[9].Equals('!'))
+                            //    {
+                            //        ans.Clear();
+                            //        break;
+                            //    }
+                            //}
                         }
 
                         streamWriter.Write(judge_function(ans));
